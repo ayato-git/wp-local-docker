@@ -1,0 +1,34 @@
+{
+    "name": "vendor/skeleton",
+    "description": "",
+    "keywords": [],
+    "license": "GPL-2.0",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "johnpbloch/wordpress": "*",
+        "wpackagist-plugin/wp-i18n": "dev-trunk",
+        "wpackagist-plugin/wp-multibyte-patch": "~2.3"
+    },
+    "extra": {
+        "wordpress-install-dir": "wp"
+    },
+    "scripts": {
+        "post-package-install": "Installer::postPackageInstall",
+        "post-package-update": "Installer::postPackageUpdate",
+        "init-wp": "Installer::initWordPress"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "scripts/"
+        }
+    },
+    "config": {
+        "secure-http": false
+    }
+}
