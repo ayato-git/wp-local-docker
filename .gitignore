@@ -20,8 +20,9 @@ nbproject/
 
 # Other
 node_modules
+vendor
+composer.lock
 
-/vendor/
 /release/
 sassdoc
 scss-lint-report.xml
@@ -33,3 +34,7 @@ config.codekit
 docker-compose.override.yml
 
 notes.md
+
+# WordPress.Skeleton
+local-config.php
+wp
