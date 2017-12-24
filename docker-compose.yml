@@ -1,62 +1,54 @@
-version: '3'
+version: '2'
+
 services:
+
   mysql:
-    image: mysql:latest
+    image: mysql:5.7.19 # same version of latest MySQL on AmazonRDS
     volumes:
-      - "./data/db:/var/lib/mysql"
-    restart: always
+      - wpdb:/var/lib/mysql
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: password
+
   mailcatcher:
      image: schickling/mailcatcher
-     restart: always
      ports:
        - "1025:1025"
        - "1080:1080"
      environment:
        MAILCATCHER_PORT: 1025
-  memcached:
-    image: memcached:latest
-    restart: always
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.4
-    restart: always
-    environment:
-      ES_JAVA_OPTS: "-Xms750m -Xmx750m"
-    ports:
-      - "9200:9200"
-    volumes:
-      - "./config/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
-      - "./config/elasticsearch/plugins:/usr/share/elasticsearch/plugins"
-  phpfpm:
-    image: 10up/phpfpm
+
+  wp:
+    build: ./config/docker
     depends_on:
       - mysql
-      - memcached
-      - elasticsearch
     volumes:
-      - "./wordpress:/var/www/html"
+      - "./:/var/www/html"
       - "./config/php-fpm/php.ini:/usr/local/etc/php/php.ini"
       - "./config/php-fpm/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
-      - ~/.ssh:/root/.ssh
-    restart: always
     extra_hosts:
       - "docker-local.dev:172.18.0.1"
+    environment:
+      COMPOSER_HOME: /var/www/.composer
+
   nginx:
     depends_on:
-      - phpfpm
+      - wp
     ports:
       - "80:80"
       - "443:443"
-    image: nginx:latest
+    image: nginx:1.12-alpine
+    volumes_from:
+      - wp
     volumes:
-      - "./wordpress:/var/www/html"
       - "./config/nginx/default.conf:/etc/nginx/conf.d/default.conf"
       - "./config/certs:/etc/nginx/certs"
       - "./logs/nginx:/var/log/nginx"
-    restart: always
+
+volumes:
+  wpdb:
+    driver: local
