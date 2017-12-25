@@ -20,7 +20,7 @@
         "wordpress-install-dir": "wp",
         "installer-paths" : {
              "wp-content/mu-plugins/{$name}/" : ["type:wordpress-plugin"],
-             "wp-content/themes/{$name}/" : ["type:wordpress-theme"]
+             "wp-content/my-themes/{$name}/" : ["type:wordpress-theme"]
         }
     },
     "scripts": {
