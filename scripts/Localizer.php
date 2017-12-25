@@ -32,6 +32,7 @@ class Localizer
         system('./vendor/bin/wp checksum core --locale=' . $locale, $status);
         if ($status !== 0) {
             system('./vendor/bin/wp core download --force --version=$(./vendor/bin/wp core version) --locale=' . $locale, $status);
+            Installer::initWordPress($event);
         }
 
         system('./vendor/bin/wp language core update', $status);
