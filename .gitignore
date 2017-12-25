@@ -38,3 +38,12 @@ notes.md
 # WordPress.Skeleton
 local-config.php
 wp
+wp-content/mu-plugins/*
+!wp-content/mu-plugins/.gitkeep
+!wp-content/mu-plugins/*.php
+wp-content/plugins/*
+!wp-content/plugins/.gitkeep
+wp-content/themes/*
+!wp-content/themes/.gitkeep
+wp-content/uploads/*
+!wp-content/uploads/.gitkeep

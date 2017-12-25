@@ -1,5 +1,5 @@
 {
-    "name": "vendor/skeleton",
+    "name": "",
     "description": "",
     "keywords": [],
     "license": "GPL-2.0",
@@ -12,15 +12,18 @@
     "require": {
         "php": ">=5.3",
         "johnpbloch/wordpress": "*",
-        "wpackagist-plugin/wp-i18n": "dev-trunk",
-        "wpackagist-plugin/wp-multibyte-patch": "~2.3"
+        "wp-cli/wp-cli": "*",
+        "wpackagist-plugin/wp-multibyte-patch": "~2.8",
+        "wpackagist-plugin/akismet": "~4.0"
     },
     "extra": {
         "wordpress-install-dir": "wp"
     },
     "scripts": {
         "post-package-install": "Installer::postPackageInstall",
+        "post-install-cmd": "Localizer::postInstallCommand",
         "post-package-update": "Installer::postPackageUpdate",
+        "post-update-cmd": "Localizer::postUpdateCommand",
         "init-wp": "Installer::initWordPress"
     },
     "autoload": {
