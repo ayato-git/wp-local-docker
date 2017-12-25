@@ -40,8 +40,7 @@ local-config.php
 wp
 wp-content/mu-plugins/*
 !wp-content/mu-plugins/.gitkeep
-!wp-content/mu-plugins/add-skeleton-theme-directory.php
-!wp-content/mu-plugins/index.php
+!wp-content/mu-plugins/*.php
 wp-content/plugins/*
 !wp-content/plugins/.gitkeep
 wp-content/themes/*
