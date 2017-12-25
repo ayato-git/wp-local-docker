@@ -67,6 +67,10 @@ class Installer
                 'target' => '../../wp-content/uploads',
                 'link' => "{$wpDir}/wp-content/uploads",
             ),
+            array(
+                'target' => '../../wp-content/mu-plugins',
+                'link' => "{$wpDir}/wp-content/mu-plugins",
+            ),
         );
 
         $isWin = DIRECTORY_SEPARATOR !== '/';
