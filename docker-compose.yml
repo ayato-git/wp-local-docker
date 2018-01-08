@@ -23,6 +23,8 @@ services:
     build: ./config/docker
     depends_on:
       - mysql
+    expose:
+      - "9001"
     volumes:
       - "./:/var/www/html"
       - "./config/php-fpm/php.ini:/usr/local/etc/php/php.ini"
