@@ -53,8 +53,8 @@
 ### docker-composeを使ったローカル開発環境
 
 ```
-$ cp local-config-sample.php local-config.php
-$ vim local-config.php
+$ cp wp-config.skeleton.php wp-config.php
+$ vim wp-config.php
 
 $ cp config/variables.env.sample config/variables.env
 $ vim config/variables.env
