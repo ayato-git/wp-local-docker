@@ -56,7 +56,7 @@ class Installer
         // define symlinks under wp/wp-content dir.
         $paths = array(
             array(
-                'target' => '../../wp-content/themes',
+                'target' => '../../wp-content/my-themes',
                 'link' => "{$wpDir}/wp-content/my-themes",
             ),
             array(

@@ -1,1 +1,4 @@
 path: ./wp
+
+@dev:
+  ssh: docker-compose:www-data@wp/var/www/html
