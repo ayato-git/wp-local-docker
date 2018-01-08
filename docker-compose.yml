@@ -8,19 +8,16 @@ services:
       - wpdb:/var/lib/mysql
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: password
+    env_file:
+      - config/variables.env
 
   mailcatcher:
-     image: schickling/mailcatcher
-     ports:
-       - "1025:1025"
-       - "1080:1080"
-     environment:
-       MAILCATCHER_PORT: 1025
+    image: schickling/mailcatcher
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+    env_file:
+      - config/variables.env
 
   wp:
     build: ./config/docker
@@ -30,10 +27,8 @@ services:
       - "./:/var/www/html"
       - "./config/php-fpm/php.ini:/usr/local/etc/php/php.ini"
       - "./config/php-fpm/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
-    extra_hosts:
-      - "docker-local.dev:172.18.0.1"
-    environment:
-      COMPOSER_HOME: /var/www/.composer
+    env_file:
+      - config/variables.env
 
   nginx:
     depends_on:

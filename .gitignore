@@ -32,11 +32,12 @@ config.codekit
 !/logs/.gitkeep
 
 docker-compose.override.yml
+config/variables.env
 
 notes.md
 
 # WordPress.Skeleton
-local-config.php
+wp-config.php
 wp
 wp-content/mu-plugins/*
 !wp-content/mu-plugins/.gitkeep
